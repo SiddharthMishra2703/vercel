@@ -53,7 +53,7 @@ export default function WriteBlogE() {
             const [editorState, setEditorState] = React.useState(() =>
                 EditorState.createWithContent(contentState)
             );
-            return <div className="mb-3">
+            return <div className="editor mb-3 shadow border border-secondary border-opacity-50 rounded">
             <div className="hide">
             {text.content = draftToHtml(convertToRaw(editorState.getCurrentContent()))}
             </div>
@@ -64,12 +64,6 @@ export default function WriteBlogE() {
         </div>
         }
     }
-
-  
-
-    
-
-  
   
     
     const navigate = useNavigate();
@@ -130,14 +124,6 @@ export default function WriteBlogE() {
             navigate('/login');
         }
     }
-
-
-
-
-
-
-
-
     
 
     return (
@@ -165,7 +151,7 @@ export default function WriteBlogE() {
                     </div>
                     <Editorr />
                 </form>
-                <button className="btn btn-primary mx-2 my-1" onClick={PostData}>Save</button>
+                <button className="btn btn-primary me-2 my-1" onClick={PostData}>Save</button>
             </div>
 
 

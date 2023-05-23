@@ -18,7 +18,7 @@ export default function Comments(props) {
     }
 
     return (
-        <div className="card w-50 shadow mx-auto mt-5 mb-3">
+        <div className="card shadow mx-3 mt-5 mb-3">
             <div className="card-body">
                 <h4 className="card-title">Comments</h4>
                 <div className="input-group mb-3">

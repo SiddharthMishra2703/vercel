@@ -63,13 +63,6 @@ export default function WriteBlogE() {
         }
     }
 
-
-
-
-
-
-
-
     const [editorState, setEditorState] = React.useState(() =>
         EditorState.createEmpty()
     );
@@ -82,11 +75,11 @@ export default function WriteBlogE() {
                     <div className="row my-4">
                         <div className="col-6">
                             <div className="input-group flex-nowrap">
-                                <input type="text" className="form-control" placeholder="Enter Title" value={text.title} name='title' onChange={handleOnChange} aria-label="Username" aria-describedby="addon-wrapping" />
+                                <input type="text" className="form-control shadow" placeholder="Enter Title" value={text.title} name='title' onChange={handleOnChange} aria-label="Username" aria-describedby="addon-wrapping" />
                             </div>
                         </div>
                         <div className="col-6">
-                            <select className="form-select" value={text.topic} name='topic' onChange={handleOnChange} aria-label="Default select example">
+                            <select className="form-select shadow" value={text.topic} name='topic' onChange={handleOnChange} aria-label="Default select example">
                                 <option selected>Open this select menu</option>
                                 <option value="Fashion">Fashion</option>
                                 <option value="Sports">Sports</option>
@@ -97,7 +90,7 @@ export default function WriteBlogE() {
                             </select>
                         </div>
                     </div>
-                    <div className="mb-3">
+                    <div className="editor mb-3 shadow border border-secondary border-opacity-50 rounded">
                         <div className="hide">
                         {text.content = draftToHtml(convertToRaw(editorState.getCurrentContent()))}
                         </div>
@@ -107,7 +100,7 @@ export default function WriteBlogE() {
                         />
                     </div>
                 </form>
-                <button className="btn btn-primary mx-2 my-1" onClick={PostData}>Save</button>
+                <button className="btn btn-primary me-2 my-1" onClick={PostData}>Save</button>
             </div>
 
 

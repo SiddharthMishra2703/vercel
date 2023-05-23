@@ -64,10 +64,12 @@
     padding: 20px;
     height: 50vh;
   }
-  .active {
-    background-color: #e0e9ff;
+  .editor {
+    background-color: rgb(237, 244, 246);
+    width: auto;
+    height: 400px;
   }
+
   .hide{
     display: none;
   }
-  
