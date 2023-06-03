@@ -9,8 +9,6 @@ export default function Blogs() {
 
     const [userData, setUserData] = useState([]);
 
-
-
     const getData = async () => {
         try {
             const res = await fetch('/blog', {
@@ -36,6 +34,8 @@ export default function Blogs() {
     useEffect(() => {
         getData();
     }, []);
+
+
     const sorting = (val) => {
         if (userData) {
             if (val == 1) {

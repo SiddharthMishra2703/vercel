@@ -1,8 +1,11 @@
 import React from 'react'
 import { useState } from 'react'
+import {useNavigate } from "react-router-dom";
 
 
 export default function Comments(props) {
+    const navigate = useNavigate();
+    console.log(props);
     const [text, setText] = useState({
         comment: ""
     });
@@ -18,12 +21,20 @@ export default function Comments(props) {
     }
 
     return (
-        <div className="card shadow mx-3 mt-5 mb-3">
+        <div className="card shadow mt-5 mb-3">
             <div className="card-body">
                 <h4 className="card-title">Comments</h4>
                 <div className="input-group mb-3">
                     <input type="text" className="form-control" value={text.comment} name='comment' onChange={handleOnChnage}  placeholder="Add a comment..." />
                     <button className="btn btn-outline-primary" onClick={async (e) => {
+                        if(props.auth && props.auth === "unauthorized"){
+                            const stop = window.confirm("You Have To Register");
+                            if(! stop){
+                                return 0;
+                            }else{
+                                navigate("/register");
+                            }
+                        }
 
                         e.preventDefault();
 
@@ -45,12 +56,13 @@ export default function Comments(props) {
                             const data = await res.json();
 
                             if (res.status === 422 || !data) {
-                                window.alert("Invalid Blog");
-                                console.log("Invalid Blog");
+                                window.alert("comment not added");
+                                console.log("comment not added");
                             } else {
-                                window.alert("Blog saved successfuly");
-                                console.log("Blog saved successfuly");
-
+                                // window.alert("Blog saved successfuly");
+                                console.log("comment added successfuly");
+                                props.onSubmit();
+                                text.comment = "";
                                 // navigate('/dashboard');
                             }
 
@@ -58,7 +70,7 @@ export default function Comments(props) {
                             console.log(err);
                             //   navigate('/login');
                         }
-                        window.location.reload();
+                        // window.location.reload();
                     }} type="button" id="button-addon2">Post</button>
                 </div>
                 {/* <input type="text" className="form-control" placeholder="Add a comment..." /> */}

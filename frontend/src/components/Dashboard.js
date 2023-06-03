@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useReducer} from 'react'
 import './css/Dashboard.css'
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -7,11 +7,11 @@ import { Link, useNavigate } from "react-router-dom";
 export default function Dashboard() {
 
   const navigate = useNavigate();
-
+  const [change, forceUpdate] = useReducer(x => x + 1, 0);
   const [userData, setUserData] = useState({});
   const callDashboardPage = async () => {
     try {
-      const res = await fetch('/Dashboard', {
+      const res = await fetch('/daashboard', {
         method: "GET",
         headers: {
           Accept: "appllication/json",
@@ -38,7 +38,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     callDashboardPage();
-  }, []);
+  }, [change]);
 
   return (
 
@@ -106,6 +106,10 @@ export default function Dashboard() {
                   </button>
 
                   <button type="button" onClick={async (e) => {
+                    const stop = window.confirm("Deleting Your Blog");
+                    if(! stop){
+                        return 0;
+                    }
 
                     e.preventDefault();
 
@@ -125,20 +129,20 @@ export default function Dashboard() {
                       const data = await res.json();
 
                       if (res.status === 422 || !data) {
-                        window.alert("Invalid Blog");
-                        console.log("Invalid Blog");
+                        window.alert("Can not delete blog");
+                        console.log("Can not delete blog");
                       } else {
-                        window.alert("Blog saved successfuly");
+                        forceUpdate();
+                        window.alert("Blog deleted successfuly");
                         console.log("Blog saved successfuly");
-
-                        navigate('/dashboard');
+                        // navigate('/dashboard');
                       }
 
                     } catch (err) {
                       console.log(err);
                       navigate('/dashboard');
                     }
-                    window.location.reload();
+                    // window.location.reload();
                   }} className="btn btn-outline-danger btn-sm mx-2">
                     <i className="zmdi zmdi-delete"></i>
                   </button>
@@ -160,6 +164,10 @@ export default function Dashboard() {
             </div>
             <div className="col-md-3 mx-auto my-4">
               <button type="button" onClick={async (e) => {
+                const stop = window.confirm("Deleting Your Account");
+                if(! stop){
+                    return 0;
+                }
 
                 e.preventDefault();
 
@@ -179,20 +187,20 @@ export default function Dashboard() {
                   const data = await res.json();
 
                   if (res.status === 422 || !data) {
-                    window.alert("Invalid Blog");
-                    console.log("Invalid Blog");
+                    window.alert("try again");
+                    console.log("user not deleted");
                   } else {
-                    window.alert("Blog saved successfuly");
-                    console.log("Blog saved successfuly");
+                    window.alert("Account Deleted");
+                    console.log("user deleted");
 
-                    // navigate('/dashboard');
+                    navigate('/home');
                   }
 
                 } catch (err) {
                   console.log(err);
-                  // navigate('/dashboard');
+                  navigate('/home');
                 }
-                window.location.reload();
+                // window.location.reload();
               }} className="btn btn-outline-danger btn-md mx-2">
                 <i className="zmdi zmdi-delete"></i> Delete User
               </button>

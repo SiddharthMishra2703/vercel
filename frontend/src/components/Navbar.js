@@ -20,6 +20,9 @@ export default function Navbar() {
                         <Link className="nav-link" to="/dashboard">Dashboard</Link>
                     </li>
                     <li className="nav-item">
+                        <Link className="nav-link" to="/writeblog">Write Blog</Link>
+                    </li>
+                    <li className="nav-item">
                         <Link className="nav-link" to="/logout">Logout</Link>
                     </li>
                 </>
