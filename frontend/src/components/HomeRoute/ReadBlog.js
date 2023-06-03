@@ -54,9 +54,7 @@ function DelButton(props) {
 export default function Blogs() {
   const navigate = useNavigate();
   const [change, forceUpdate] = useReducer(x => x + 1, 0);
-  const getBack = () => {
-    forceUpdate();
-  }
+
   const url = window.location.href;
   const blogId = url.slice(-24);
   const [userData, setUserData] = useState({});
@@ -252,7 +250,7 @@ export default function Blogs() {
                         console.log(err);
                         //   navigate('/login');
                       }
-                      window.location.reload();
+                    //   window.location.reload();
                     }} className="btn btn-outline-danger btn-sm">
                       <i className="zmdi zmdi-favorite"></i>
                       <span>        {blog.likes}</span>
@@ -268,7 +266,7 @@ export default function Blogs() {
               </div>
             </div>
 
-            <Comments blogId={blog._id} />
+            <Comments onSubmit={forceUpdate} blogId={blog._id} auth={impData.error} />
 
             {/* All Comments section */}
             <div>
